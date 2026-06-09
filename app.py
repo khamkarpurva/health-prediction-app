@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, redirect
 import sqlite3
+from datetime import date
 
 app = Flask(__name__)
 
@@ -117,6 +118,8 @@ def edit_patient(id):
 
         fullname = request.form['fullname']
         dob = request.form['dob']
+        if dob > "2026-06-09":
+          return "Date of Birth cannot be a future date"
         email = request.form['email']
         glucose = request.form['glucose']
         haemoglobin = request.form['haemoglobin']
